@@ -1,0 +1,32 @@
+{
+  "branches": ["master"],
+  "plugins": [
+    '@semantic-release/release-notes-generator', [
+      '@semantic-release/commit-analyzer', {
+        "preset": "angular",
+        "releaseRules": [
+          {"type": "breaking", "release": "major"},
+          {"type": "refactor", "release": "patch"},
+          {"type": "no-release", "release": false}
+        ],
+        "parserOpts": {
+          "noteKeywords": [
+            "BREAKING",
+            "BREAKING CHANGE",
+            "BREAKING CHANGES"
+          ]
+        }
+      }
+    ],
+    [
+      "@semantic-release/changelog", {
+        "changelogFile": "CHANGELOG.md"
+      }
+    ],
+    [
+      '@semantic-release/git', {
+        "assets": "CHANGELOG.md"
+      }
+    ]
+  ]
+}
